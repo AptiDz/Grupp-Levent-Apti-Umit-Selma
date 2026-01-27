@@ -15,7 +15,12 @@ Skapa filen ".env" i roten
 
 Insida av .env filen
 
-HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
+lägg till nedan två variablar
+
+- HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
+
+- HUGGINGFACE_MODEL=ServiceNow-AI/Apriel-1.6-15b-Thinker
+
 
 ## Starta appen
 
