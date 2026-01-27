@@ -1,5 +1,6 @@
 # Grupp-Levent-Apti-Umit-Selma
-AI Teacher
+
+## AI Teacher
 
 ### Installera
 
@@ -8,20 +9,15 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 
+### Konfiguera API och dess privat token
 
-## Konfigurera token
+Skapa filen ".env" i roten
 
-Skapa filen `Grupp-Levent-Apti-Umit-Selma/.env`:
+insida av .env filen
+HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
 
-```env
-HUGGINGFACE_API_TOKEN=din_token_här
-# valfritt:
-HUGGINGFACE_MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct
-```
+### Starta appen
 
-## Kör appen
-
-```bash
+### Terminalen
 cd "Grupp-Levent-Apti-Umit-Selma"
 python3 -m streamlit run main.py
-```
