@@ -1,8 +1,8 @@
 # Grupp-Levent-Apti-Umit-Selma
 
-## AI Teacher
+# AI Teacher
 
-### Installera
+## Installera
 
 cd "Grupp-Levent-Apti-Umit-Selma"
 python3 -m venv .venv
@@ -16,7 +16,7 @@ Skapa filen ".env" i roten
 insida av .env filen
 HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
 
-### Starta appen
+## Starta appen
 
 ### Terminalen
 cd "Grupp-Levent-Apti-Umit-Selma"
