@@ -13,11 +13,14 @@ pip install -r requirements.txt
 
 Skapa filen ".env" i roten
 
-insida av .env filen
+Insida av .env filen
+
 HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
 
 ## Starta appen
 
 ### Terminalen
+
 cd "Grupp-Levent-Apti-Umit-Selma"
+
 python3 -m streamlit run main.py
