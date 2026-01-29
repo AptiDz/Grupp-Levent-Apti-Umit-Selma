@@ -2,6 +2,8 @@
 from datetime import datetime
 # Importerar streamlit - biblioteket som skapar webbgränssnittet
 import streamlit as st
+# Importerar Config-klassen som innehåller alla inställningar
+from config import Config
 
 # Ställer in sidans titel och layout
 st.set_page_config(page_title="AI-chat", layout="wide")
@@ -36,6 +38,16 @@ def handle_chat_response() -> None:
 with st.sidebar:
     st.header("Inställningar")
     
+    # Slider för att välja temperatur
+    temp = st.slider(
+        "Temperatur",
+        min_value=0.0,
+        max_value=1.0,
+        value=Config.DEFAULT_TEMPERATURE,
+        step=0.1,
+        help="Lägre = mer fokuserat, högre = mer kreativt.",
+    )
+    
     # Dropdown-meny för att välja ämne
     st.selectbox(
         "Ämne",
@@ -46,23 +58,15 @@ with st.sidebar:
     # Slider för att välja svårighetsgrad
     st.select_slider("Svårighetsgrad", options=["Lätt", "Medel", "Svår"], key="difficulty")
 
-    # Skiljelinje och info om att detta är demo-läge
     st.markdown("---")
-    st.info("Demo-läge")
 
     # Knapp för att rensa chatten
     if st.button("Rensa chatt"):
         st.session_state.messages = []
         st.rerun()
 
-
 # Huvudrubrik på sidan
 st.title("AI Lärare")
-
-# Textfält för användarinput
-user_text = st.chat_input("Skriv ditt meddelande...")
-if user_text:
-    add_message_to_chat("user", user_text)
 
 # Visar alla meddelanden i chatthistoriken
 for message in st.session_state.messages:
@@ -70,6 +74,8 @@ for message in st.session_state.messages:
         st.write(message["content"])
         st.caption(message.get("timestamp", ""))
 
-# Skickar ett demo-svar när användaren skriver något
+# Textfält för användarinput
+user_text = st.chat_input("Skriv ditt meddelande...")
 if user_text:
+    add_message_to_chat("user", user_text)
     handle_chat_response()
