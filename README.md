@@ -8,7 +8,7 @@
 - cd "Grupp-Levent-Apti-Umit-Selma"
 - python3 -m venv .venv alt python -m venv .venv
 - source .venv/bin/activate alt source .venv/Scripts/activate
-- pip install -r requirements.txt
+- pip3 install -r requirements.txt alt pip install -r requirements.txt
 
 ### Konfiguera API och dess privat token
 
