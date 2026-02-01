@@ -4,11 +4,11 @@
 
 ## Installera
 
-"bash terminal"
-cd "Grupp-Levent-Apti-Umit-Selma"
-python3 -m venv .venv alt python -m venv .venv
-source .venv/bin/activate alt source .venv/Scripts/activate
-pip install -r requirements.txt
+- bash terminal
+- cd "Grupp-Levent-Apti-Umit-Selma"
+- python3 -m venv .venv alt python -m venv .venv
+- source .venv/bin/activate alt source .venv/Scripts/activate
+- pip install -r requirements.txt
 
 ### Konfiguera API och dess privat token
 
@@ -25,13 +25,13 @@ lägg till nedan två variablar
 
 ## Starta appen
 
-### Terminalen
+### Bash Terminalen
 
-cd "Grupp-Levent-Apti-Umit-Selma"
+- cd "Grupp-Levent-Apti-Umit-Selma"
 
-streamlit run main.py
+- streamlit run main.py
 
-Gå in på Local URL för att testa appen.
+- Gå in på Local URL för att testa appen.
 
 ### Innehåll
 Egen AI Lärare som hjälper assisterar med läxor välj din ämne, svårighetsgrad och temperatur som motsvarar kreativitet ha det lågt om du vill att den ska vara med fokuserad.
