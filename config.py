@@ -11,8 +11,8 @@ load_dotenv(dotenv_path=env_path)
 # Konfigurationsklass som innehåller alla inställningar för applikationen
 class Config:
     # Hämtar Hugging Face API-token från miljövariabler
-    HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN", "")
-    # modell som används för AI-svaren
-    DEFAULT_MODEL = os.getenv("HUGGINGFACE_MODEL", "ServiceNow-AI/Apriel-1.6-15b-Thinker")
+    HUGGINGFACE_API_TOKEN = os.getenv("HUGGINGFACE_API_TOKEN")
+    # Modell som används för AI-svaren
+    DEFAULT_MODEL = os.getenv("HUGGINGFACE_MODEL")
     # Standardtemperatur för AI-svaren går från 0.0 motsvarar fokus, 1.0 motsvarar kreativ
     DEFAULT_TEMPERATURE = 0.7
