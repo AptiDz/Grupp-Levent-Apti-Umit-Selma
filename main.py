@@ -36,19 +36,19 @@ def get_system_prompt(subject, difficulty):
     }
     
     return f"""Du är en hjälpsam AI-lärare som undervisar i {subject}.
-Anpassa ditt svar för {difficulty_text.get(difficulty)} nivå.
+Anpassa ditt svar för {difficulty_text[difficulty]} nivå.
 Var pedagogisk, tydlig och ge konkreta exempel när det är lämpligt."""
-
-# Hämtar konversationshistorik för AI-anropet
-def get_conversation_history():
-    return [{"role": msg["role"], "content": msg["content"]} for msg in st.session_state.messages]
 
 # Skickar meddelande till AI och tar emot svar
 def handle_chat_response(temperature):
-    subject = st.session_state.get("subject", "Programmering")
-    difficulty = st.session_state.get("difficulty", "Medel")
+    subject = st.session_state["subject"]
+    difficulty = st.session_state["difficulty"]
     system_prompt = get_system_prompt(subject, difficulty)
-    conversation_history = get_conversation_history()
+    # Hämtar konversationshistorik för AI-anropet
+    conversation_history =  [
+        {"role": msg["role"], "content": msg["content"]}
+        for msg in st.session_state.messages
+    ]
     
     # Skapar en chattbubbla för assistentens svar
     with st.chat_message("assistant"):
@@ -56,22 +56,21 @@ def handle_chat_response(temperature):
         accumulated = ""
         
         # Strömmar svar från AI:n
-    with st.spinner("Laddar"):
-        for event in st.session_state.llm_handler.stream(
-            messages=conversation_history,
-            model_name=Config.DEFAULT_MODEL,
-            temperature=temperature,
-            system_message=system_prompt
-        ):
-            if event.get("type") == "token":
-                accumulated += event.get("text", "")
-                placeholder.write(accumulated)
-            elif event.get("type") == "done":
-                accumulated = event.get("text", accumulated)
-                placeholder.write(accumulated)
-            elif event.get("type") == "error":
-                st.error(f"Fel vid AI-anrop: {event.get('text')}")
-                return
+        with st.spinner("Laddar"):
+            for event in st.session_state.llm_handler.stream(
+                messages=conversation_history,
+                temperature=temperature,
+                system_message=system_prompt
+            ):
+                if event.get("type") == "token":
+                    accumulated += event.get("text", "")
+                    placeholder.write(accumulated)
+                elif event.get("type") == "done":
+                    accumulated = event.get("text", accumulated)
+                    placeholder.write(accumulated)
+                elif event.get("type") == "error":
+                    st.error(f"Fel vid AI-anrop: {event.get('text')}")
+                    return
     
     # Sparar AI:ns svar i chatthistoriken
     if accumulated:
@@ -125,10 +124,15 @@ st.title("AI Lärare")
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
-        st.caption(message.get("timestamp"))
+        st.caption(message["timestamp"])
 
 # Textfält för användarinput
 user_text = st.chat_input("Skriv ditt meddelande...")
 if user_text:
     add_message_to_chat("user", user_text)
+    
+    # visa direkt i samma run
+    with st.chat_message("user"):
+        st.write(user_text)
+        st.caption(st.session_state.messages[-1]["timestamp"])
     handle_chat_response(temperature)

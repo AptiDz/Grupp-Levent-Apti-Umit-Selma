@@ -86,11 +86,10 @@ class LLMHandler:
             except Exception:
                 text = str(result)
             
-            # Delar upp texten i ord för att simulera streaming
-            words = text.split()
-            for i, word in enumerate(words):
-                chunk_text = word + (" " if i < len(words) - 1 else "")
-                yield {"type": "token", "text": chunk_text}
+            # Strömmar ut texten i små delar (chunks) för att simulera streaming
+            chunk_size = 25
+            for i in range(0, len(text), chunk_size):    
+                yield {"type": "token", "text": text[i:i+chunk_size]}
             
             # Skickar det kompletta svaret när allt är klart
             yield {"type": "done", "text": text}

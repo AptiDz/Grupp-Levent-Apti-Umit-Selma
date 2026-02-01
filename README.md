@@ -28,4 +28,9 @@ lägg till nedan två variablar
 
 cd "Grupp-Levent-Apti-Umit-Selma"
 
-python3 -m streamlit run main.py
+streamlit run main.py
+
+Gå in på Local URL för att testa appen.
+
+### Innehåll
+Egen AI Lärare som hjälper assisterar med läxor välj din ämne, svårighetsgrad och temperatur som motsvarar kreativitet ha det lågt om du vill att den ska vara med fokuserad.
