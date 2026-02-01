@@ -4,9 +4,10 @@
 
 ## Installera
 
+"bash terminal"
 cd "Grupp-Levent-Apti-Umit-Selma"
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv alt python -m venv .venv
+source .venv/bin/activate alt source .venv/Scripts/activate
 pip install -r requirements.txt
 
 ### Konfiguera API och dess privat token
