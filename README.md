@@ -4,7 +4,7 @@
 
 ## Installera
 
-- bash terminal
+### bash terminal
 - cd "Grupp-Levent-Apti-Umit-Selma"
 - python3 -m venv .venv alt python -m venv .venv
 - source .venv/bin/activate alt source .venv/Scripts/activate
@@ -16,7 +16,7 @@ Skapa filen ".env" i roten
 
 Insida av .env filen
 
-lägg till nedan två variablar
+Lägg till nedan två variablar
 
 - HUGGINGFACE_API_TOKEN=din_token_här  <---- klistra in din privata token
 
@@ -25,7 +25,7 @@ lägg till nedan två variablar
 
 ## Starta appen
 
-### Bash Terminalen
+### bash Terminalen
 
 - cd "Grupp-Levent-Apti-Umit-Selma"
 
